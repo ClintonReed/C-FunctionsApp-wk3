@@ -19,15 +19,15 @@ namespace csc322functions
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string name = req.Query["name"];
+            string num1 = req.Query["num1"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            num1 = num1 ?? data?.name;
 
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
-                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
+            return num1 != null
+                ? (ActionResult)new OkObjectResult($"You entered {num1}")
+                : new BadRequestObjectResult("Please pass a number on the query string or in the request body");
         }
     }
 }
