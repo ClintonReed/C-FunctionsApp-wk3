@@ -19,15 +19,18 @@ namespace csc322functions
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string name = req.Query["name"];
+            string num1 = req.Query["num1"];
+            string num2 = req.Query["num2"];
+            string total = (num1 + num2);
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            num1 = num1 ?? data?.name;
+            num2 = num2 ?? data?.name;
 
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
-                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
+            return total != null
+                ? (ActionResult)new OkObjectResult($"The sum of {num1} plus {num2} is {total}")
+                : new BadRequestObjectResult("Please pass two numbers on the query string or in the request body, labeled num1 and num2");
         }
     }
 }
