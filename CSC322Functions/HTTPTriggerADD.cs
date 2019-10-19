@@ -23,8 +23,8 @@ namespace csc322functions
             int num2 = Convert.ToInt32(req.Query["num2"]);
             int total = num1 + num2;
             string num3 = num1.ToString(req.Query["num1"]);
-            string num4 = total.ToString(req.Query["num2"]);
-            string solution = total.ToString(req.Query["total"]);
+            string num4 = num2.ToString(req.Query["num2"]);
+            string solution = total.ToString();
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
