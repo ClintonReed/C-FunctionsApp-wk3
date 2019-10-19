@@ -28,6 +28,7 @@ namespace csc322functions
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
+            solution = solution ?? data?.solution;
             num3 = solution ?? data?.num1;
             num4 = solution ?? data?.num2;
 
