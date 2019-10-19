@@ -22,12 +22,14 @@ namespace csc322functions
             int num1 = Convert.ToInt32(req.Query["num1"]);
             int num2 = Convert.ToInt32(req.Query["num2"]);
             int total = num1 + num2;
-            string solution = req.Query["solution"];
+            string num3 = num1.ToString(req.Query["num1"]);
+            string num4 = total.ToString(req.Query["num2"]);
+            string solution = total.ToString(req.Query["total"]);
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-             num1 = solution ?? data?.num1;
-             num2 = solution ?? data?.num2;
+            num3 = solution ?? data?.num1;
+            num4 = solution ?? data?.num2;
 
             return solution != null
                 ? (ActionResult)new OkObjectResult($"The sum of {num1} plus {num2} is {total}")
