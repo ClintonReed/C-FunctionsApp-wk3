@@ -26,8 +26,8 @@ namespace csc322functions
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-             num1 = num1 ?? Convert.ToInt32?.name;
-             num2 = num2 ?? data?.name;
+             num1 = solution ?? data?.num1;
+             num2 = solution ?? data?.num2;
 
             return solution != null
                 ? (ActionResult)new OkObjectResult($"The sum of {num1} plus {num2} is {total}")
