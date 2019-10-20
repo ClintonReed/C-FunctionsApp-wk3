@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace csc322functions
+namespace CSC322Functions
 {
-    public static class HTTPTriggerADD
+    public static class HTTPTriggerSubtract
     {
-        [FunctionName("HTTPTriggerADD")]
+        [FunctionName("HTTPTriggerSubtract")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -21,20 +21,20 @@ namespace csc322functions
 
             int num1 = Convert.ToInt32(req.Query["num1"]);
             int num2 = Convert.ToInt32(req.Query["num2"]);
-            int total = num1 + num2;
-            string num3 = num1.ToString();
-            string num4 = num2.ToString();
-            string solution = total.ToString();
+            int total = num1 - num2;
+            string num3 = num1.ToString();   
+            string num4 = num2.ToString();   
+            string result = total.ToString();
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            solution = solution ?? data?.solution;
-            num3 = solution ?? data?.num1;
-            num4 = solution ?? data?.num2;
+            result = result ?? data?.result;
+            num3 = result ?? data?.num1;
+            num4 = result ?? data?.num2;
 
-            return solution != null
-                ? (ActionResult)new OkObjectResult($"Add 2 numbers to the query string labeled num1 and num2. You entered {num1} and {num2}. {num1} + {num2} = {total}")
-                : new BadRequestObjectResult("Please pass two numbers on the query string or in the request body, labeled num1 and num2");
+            return result != null
+                ? (ActionResult)new OkObjectResult($"Enter two numbers you would like to subtract into the query string labeled num1 and num2. You entered {num1} and {num2}. {num1} - {num2} = {total}")
+                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
         }
     }
 }
