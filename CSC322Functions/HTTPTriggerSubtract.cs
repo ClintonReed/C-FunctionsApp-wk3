@@ -40,7 +40,7 @@ namespace CSC322Functions
 
             return result != null
                 ? (ActionResult)new OkObjectResult($"Enter two numbers you would like to subtract into the query string labeled num1 and num2. You entered {num1} and {num2}. {num1} - {num2} = {total}") // final page output message
-                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");   // should display when no inputs are entered on page load, but doesn't
+                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");   // should display when no inputs are entered on page load, but doesn't. Maybe has something to do with the required requests of strings on page load?
         }
     }
 }
