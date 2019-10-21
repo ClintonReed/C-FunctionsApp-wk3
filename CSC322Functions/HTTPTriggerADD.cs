@@ -33,7 +33,7 @@ namespace csc322functions
             num4 = solution ?? data?.num2;
 
             return solution != null
-                ? (ActionResult)new OkObjectResult($"Add 2 numbers to the query string labeled num1 and num2. You entered {num1} and {num2}. {num1} + {num2} = {total}")
+                ? (ActionResult)new OkObjectResult($"Enter 2 numbers to the query string labeled num1 and num2 that you would like to add togethor. You entered {num1} and {num2}. {num1} + {num2} = {total}")
                 : new BadRequestObjectResult("Please pass two numbers on the query string or in the request body, labeled num1 and num2");
         }
     }
